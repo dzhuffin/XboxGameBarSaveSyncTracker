@@ -1,0 +1,10 @@
+<Page
+    x:Class="SaveSync.Widget.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Margin="24" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Save Sync Tracker is an Xbox Game Bar widget. Press Win+G and open it from the widget menu." />
+    </Grid>
+</Page>

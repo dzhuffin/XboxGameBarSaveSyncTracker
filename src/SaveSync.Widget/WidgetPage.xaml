@@ -1,0 +1,70 @@
+<Page
+    x:Class="SaveSync.Widget.WidgetPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock             Text="Cloud save status" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <CheckBox x:Name="ShowUninstalled" Grid.Column="1" Content="Show uninstalled" MinWidth="0"
+                      Checked="OnFilterChanged" Unchecked="OnFilterChanged" />
+        </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="SearchBox" PlaceholderText="Search games" Margin="0,0,8,0"
+                                 TextChanged="OnSearchChanged" />
+                        <ComboBox x:Name="SortBox" Grid.Column="1" SelectedIndex="1" SelectionChanged="OnSortChanged">
+                            <ComboBoxItem Content="Sort: Name" />
+                            <ComboBoxItem Content="Sort: Last synced" />
+                            <ComboBoxItem Content="Sort: Status (unsynced first)" />
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock x:Name="Banner" Grid.Row="2" TextWrapping="Wrap" Margin="0,0,0,8" Visibility="Collapsed"
+                   Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+
+                    <ListView x:Name="GameList" Grid.Row="3"  SelectionMode="None" IsItemClickEnabled="False">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0,6" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Opacity="{Binding Opacity}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Ellipse Width="12" Height="12" Fill="{Binding StateBrush}" Margin="4,5,12,0" VerticalAlignment="Top" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{Binding StateText}" Foreground="{Binding StateBrush}" FontSize="13" />
+                            <TextBlock Text="{Binding Detail}" FontSize="12" TextWrapping="Wrap"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
